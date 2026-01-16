@@ -1,44 +1,54 @@
 https://colab.research.google.com/drive/1rs-BPl6zW7HiRTNaPBO0xTsONPYKsmfC?usp=sharing
 
-# Автоматическая классификация сортов растений по изображениям семян или листьев
+# Прогноз спроса на сельхозпродукцию на основе открытых рыночных данных
 
-Мультиклассовая классификация 12 сортов растений по изображениям семян из датасета Plant Seedlings Classification.
+Прогноз производства сельхозпродукции (11 товаров) на 3 года вперед с использованием временных рядов.
 
 ## Цель и мотивация
-Цель — разработать модель для точной идентификации сортов растений на ранних стадиях роста. Мотивация — помощь в автоматизированном контроле сорняков и сортировке семян в сельском хозяйстве, снижая ручной труд и повышая урожайность.
+Цель — спрогнозировать объемы производства для оптимизации цепочек поставок. 
+Мотивация — помощь в планировании для фермеров и рынков, учитывая тренды и сезонность, для снижения рисков перепроизводства или дефицита.
 
 ## Использованные данные
-Данные из Kaggle датасета Plant Seedlings Classification (plant-seedlings-classification.zip), содержащего изображения семян 12 классов (например, Black-grass, Maize и т.д.). Источник: [Kaggle - Plant Seedlings Classification](https://www.kaggle.com/competitions/plant-seedlings-classification).
+Данные из FAOSTAT (Production_Crops_Livestock_E_All_Data_(Normalized).zip), агрегированные по годам для 11 товаров (Apples, Wheat и т.д.). Источник: [FAOSTAT Bulk Download](https://fenixservices.fao.org/faostat/static/bulkdownloads/).
 
 ## Архитектура модели и обоснование выбора
-Модель на базе ResNet50 (предобученная на ImageNet) с fine-tuning последних слоев (layer4 и fc). Финальный слой: Linear для 12 классов. Обоснование: ResNet50 хорошо справляется с задачами классификации изображений благодаря residual connections, предотвращающим vanishing gradients. Fine-tuning адаптирует модель к специфическим данным, а class_weights учитывают дисбаланс (например, повышенный вес для Black-grass).
+N-BEATS демонстрирует выдающиеся результаты именно на унивариантных временных рядах (одна переменная — объём производства).
+Главные преимущества:
+- хорошо выделяет долгосрочные тренды и сезонные компоненты без явного указания сезонности
+- не требует экзогенных переменных (дополнительных признаков: погода, цены, удобрения и т.д.)
+- интерпретируемость лучше, чем у многих других глубоких моделей (можно разложить прогноз на тренд и сезонность)
+- часто превосходит классические статистические модели и даже более сложные нейросети (Transformer, TFT) на относительно коротких рядах без большого количества ковариат
+
+Для сравнения в качестве сильного базового уровня (baseline) используется классическая модель ARIMA(1,1,1) — одна из самых популярных и часто применяемых статистических моделей для прогнозирования временных рядов.
 
 ## Метрики качества
-- Accuracy (общая и per-class)
-- CrossEntropy Loss
-- Confusion Matrix
-- Classification Report (precision, recall, F1-score по классам)
+- MAPE (Mean Absolute Percentage Error)
+- SMAPE (Symmetric Mean Absolute Percentage Error)
 
 ## Результаты
-Обучено 15 эпох с ReduceLROnPlateau и early stopping. Валидационная точность: ~90% (примерное; в коде выводится val_acc). 
+Модель N-BEATS была обучена на 80 эпохах и показала смешанные, но в целом очень достойные результаты по сравнению с классическим baseline ARIMA(1,1,1).
 
-Classification Report (пример; полный в консоли):
+[model_report.txt](https://github.com/user-attachments/files/24681129/model_report.txt)
+               product  ARIMA_MAPE  ARIMA_SMAPE  NBEATS_MAPE  NBEATS_SMAPE
+              Cherries    8.357051     8.795032     2.824338      2.885733
+                Apples    1.024687     1.030400     2.990763      2.950021
+           Cranberries   16.025158    17.547155     5.813844      5.986336
+          Maize (corn)    2.570466     2.519483     6.063334      5.822604
+                 Wheat    1.827539     1.846296     6.066609      5.797123
+              Cabbages    1.100377     1.091416     6.848999      6.505465
+               Oranges    0.856122     0.858197     7.955293      7.526837
+Cucumbers and gherkins    2.562454     2.524535     8.318300      7.881720
+              Tomatoes    3.477756     3.417473     8.380850      7.999606
+                Grapes    2.069486     2.056721     8.925293      8.348867
+           Cocoa beans    7.303027     6.956230    15.420020     13.954648
 
-| Class | Precision | Recall | F1-Score | Support |
-|-------|-----------|--------|----------|---------|
-| Black-grass | 0.850 | 0.900 | 0.874 | 50 |
-| ... | ... | ... | ... | ... |
-
-Confusion Matrix (отображается в коде):
-
-![Confusion Matrix](confusion_matrix.png)  <!-- Предполагается сохранение, но в коде plt.show() -->
+**Ключевые наблюдения:**
+- **N-BEATS значительно лучше** на культурах с выраженной нелинейностью и нестационарностью: вишня (Cherries) и клюква (Cranberries) — снижение ошибки более чем в 2–3 раза.
+- **ARIMA неожиданно выигрывает** на многих стабильных трендовых рядах (пшеница, апельсины, томаты, виноград, какао и др.), где данные довольно гладкие и хорошо описываются линейными/полиномиальными трендами + дифференцированием.
+- Средняя MAPE по всем культурам:  
+  ARIMA ≈ **4.2–4.5%**, N-BEATS ≈ **7.0–7.5%** (но с гораздо лучшими результатами на сложных рядах).
 
 ## Инструкция по запуску кода
-- **Requirements и зависимости**: PyTorch, torchvision, scikit-learn, seaborn, matplotlib, numpy, tqdm.
-- Установка: `!pip install torch torchvision torchaudio` (если не установлено); код монтирует Google Drive.
-- Запуск: В Google Colab монтируйте Drive (`from google.colab import drive; drive.mount('/content/drive')`), разархивируйте датасет, выполните код. Модель сохраняется как 'best_plant_model.pth'. Скачивание: `files.download('/content/drive/MyDrive/best_plant_model.pth')`
-
-## Список литературы / источников
-- ResNet: He, K., et al. (2016). Deep Residual Learning for Image Recognition. CVPR.
-- Kaggle Dataset: Plant Seedlings Classification Competition.
-- PyTorch Documentation: https://pytorch.org/
+Открыть https://colab.research.google.com/drive/1rs-BPl6zW7HiRTNaPBO0xTsONPYKsmfC?usp=sharing.
+Сделать копию себе на Гугл Диск.
+Выполнить код поочередно во всех ячейках.
