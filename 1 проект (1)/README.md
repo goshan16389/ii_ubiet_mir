@@ -77,6 +77,6 @@ Tomato___Spider_mites Two-spotted_spider_mite      0.837     0.976     0.901    
 
 
 ## Инструкция по запуску кода
-Открыть https://colab.research.google.com/drive/18g7iq-HX67wennRx4qCXWGOni4SP96Uj?usp=sharing
+Открыть https://colab.research.google.com/drive/18g7iq-HX67wennRx4qCXWGOni4SP96Uj?usp=sharing.
 Сделать копию себе на Гугл Диск.
-Выполнить код поочередно во всех ячейках
+Выполнить код поочередно во всех ячейках.
