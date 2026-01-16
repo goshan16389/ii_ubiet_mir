@@ -1,0 +1,9 @@
+u8darts
+pytorch-forecasting
+pytorch-lightning
+torch
+statsmodels
+requests
+numpy
+pandas
+matplotlib
