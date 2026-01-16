@@ -9,7 +9,7 @@ https://colab.research.google.com/drive/1rs-BPl6zW7HiRTNaPBO0xTsONPYKsmfC?usp=sh
 Мотивация — помощь в планировании для фермеров и рынков, учитывая тренды и сезонность, для снижения рисков перепроизводства или дефицита.
 
 ## Использованные данные
-Данные из FAOSTAT (Production_Crops_Livestock_E_All_Data_(Normalized).zip), агрегированные по годам для 11 товаров (Apples, Wheat и т.д.). Источник: [FAOSTAT Bulk Download](https://fenixservices.fao.org/faostat/static/bulkdownloads/).
+Данные из FAOSTAT (Production_Crops_Livestock_E_All_Data_(Normalized).zip), агрегированные по годам для 11 товаров (Apples, Wheat и т.д.). Источник: [FAOSTAT](https://fenixservices.fao.org/faostat/static/bulkdownloads/Production_Crops_Livestock_E_All_Data_(Normalized).zip).
 
 ## Архитектура модели и обоснование выбора
 N-BEATS демонстрирует выдающиеся результаты именно на унивариантных временных рядах (одна переменная — объём производства).
