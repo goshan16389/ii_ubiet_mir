@@ -41,6 +41,16 @@ https://colab.research.google.com/drive/1_NczZ0xMpCJ_6ZhJDTCBkdaNxpdzGouV?usp=sh
 | **macro avg**                | 0.918     | 0.918  | 0.915    | 950     |
 | **weighted avg**             | 0.928     | 0.917  | 0.920    | 950     |
 
+## Ключевые наблюдения
+
+- **Модель очень сильная** на большинстве классов:  
+  Charlock, Maize, Small-flowered Cranesbill, Fat Hen, Common Chickweed — почти безошибочное распознавание (recall ≥ 0.96).
+- **Главная проблема** — сильная путаница между двумя похожими сорняками:  
+  **Black-grass** и **Loose Silky-bent** — 39 ошибок из 43 общих (10 + 29 взаимных перепутываний).
+- **Black-grass** чаще всего ошибочно относят к Loose Silky-bent (10 из 12 ошибок),  
+  **Loose Silky-bent** — наоборот, в Black-grass (29 из 31 ошибок).
+- Остальные ошибки редкие и единичные (по 1–5 на класс), модель уверенно различает 10 классов из 12.
+
 ## Инструкция по запуску кода
 Открыть https://colab.research.google.com/drive/1_NczZ0xMpCJ_6ZhJDTCBkdaNxpdzGouV?usp=sharing.
 Сделать копию себе на Гугл Диск.
