@@ -10,6 +10,9 @@ https://colab.research.google.com/drive/1_NczZ0xMpCJ_6ZhJDTCBkdaNxpdzGouV?usp=sh
 ## Использованные данные
 Данные из Kaggle датасета Plant Seedlings Classification (plant-seedlings-classification.zip), содержащего изображения семян 12 классов (например, Black-grass, Maize и т.д.). Источник: [Kaggle - Plant Seedlings Classification](https://www.kaggle.com/competitions/plant-seedlings-classification).
 
+<img width="1352" height="300" alt="image" src="https://github.com/user-attachments/assets/5d21ad43-92d7-4379-81a6-e6a2821f603c" />
+
+
 ## Архитектура модели и обоснование выбора
 Модель на базе ResNet50 (предобученная на ImageNet) с надстройкой последних слоев (layer4 и fc). Финальный слой заменён на линейный, выдающий 12 классов. ResNet50 отлично подходит для задач классификации изображений благодаря механизму остаточных связей (residual connections). Эти связи позволяют эффективно обучать очень глубокие сети, существенно снижая проблему исчезающих градиентов (vanishing gradients), которая обычно возникает в глубоких сетях. Надстройка адаптирует модель к специфическим данным, а веса классов учитывают дисбаланс (например, повышенный вес для Black-grass).
 
