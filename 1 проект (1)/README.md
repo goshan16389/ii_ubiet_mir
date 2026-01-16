@@ -26,55 +26,49 @@ EfficientNet обеспечивает высокую точность при н�
 
 <img width="1200" height="1000" alt="confusion_matrix" src="https://github.com/user-attachments/assets/c5d43dbe-2d99-4f24-a886-14c5b1e9c46e" />
 
-[model_report.txt](https://github.com/user-attachments/files/24680910/model_report.txt)
-
-Точность на тестовой выборке: 0.9610
-
-                                               precision    recall  f1-score   support
-
-                           Apple___Apple_scab      0.945     0.897     0.920        58
-                            Apple___Black_rot      1.000     0.954     0.976        65
-                     Apple___Cedar_apple_rust      1.000     0.920     0.958        25
-                              Apple___healthy      0.952     0.994     0.972       159
-                          Blueberry___healthy      1.000     1.000     1.000       133
-                             Cherry___healthy      1.000     0.989     0.994        90
-                      Cherry___Powdery_mildew      0.990     0.990     0.990       100
-   Corn___Cercospora_leaf_spot Gray_leaf_spot      0.906     0.857     0.881        56
-                           Corn___Common_rust      1.000     0.984     0.992       127
-                               Corn___healthy      1.000     0.991     0.996       112
-                  Corn___Northern_Leaf_Blight      0.915     0.964     0.939       112
-                            Grape___Black_rot      0.933     0.991     0.961       112
-                 Grape___Esca_(Black_Measles)      0.992     0.944     0.967       126
-                              Grape___healthy      1.000     1.000     1.000        36
-   Grape___Leaf_blight_(Isariopsis_Leaf_Spot)      0.990     0.971     0.981       105
-     Orange___Haunglongbing_(Citrus_greening)      0.995     1.000     0.997       561
-                       Peach___Bacterial_spot      0.992     1.000     0.996       237
-                              Peach___healthy      1.000     1.000     1.000        27
-                Pepper,_bell___Bacterial_spot      0.971     0.971     0.971       105
-                       Pepper,_bell___healthy      0.980     0.935     0.957       154
-                        Potato___Early_blight      0.933     1.000     0.966        98
-                             Potato___healthy      0.889     0.800     0.842        10
-                         Potato___Late_blight      0.953     0.971     0.962       104
-                          Raspberry___healthy      1.000     1.000     1.000        30
-                            Soybean___healthy      0.983     0.994     0.989       527
-                      Squash___Powdery_mildew      1.000     1.000     1.000       188
-                         Strawberry___healthy      1.000     1.000     1.000        50
-                     Strawberry___Leaf_scorch      0.978     0.989     0.983        88
-                      Tomato___Bacterial_spot      0.895     0.973     0.932       184
-                        Tomato___Early_blight      0.979     0.490     0.653        96
-                             Tomato___healthy      0.976     0.982     0.979       164
-                         Tomato___Late_blight      0.909     0.937     0.923       191
-                           Tomato___Leaf_Mold      0.985     0.680     0.805        97
-                  Tomato___Septoria_leaf_spot      0.902     0.867     0.885       181
-Tomato___Spider_mites Two-spotted_spider_mite      0.837     0.976     0.901       168
-                         Tomato___Target_Spot      0.784     0.926     0.849       149
-                 Tomato___Tomato_mosaic_virus      0.943     0.917     0.930        36
-       Tomato___Tomato_Yellow_Leaf_Curl_Virus      0.989     0.986     0.988       569
-
-                                     accuracy                          0.961      5430
-                                    macro avg      0.960     0.943     0.948      5430
-                                 weighted avg      0.963     0.961     0.960      5430
-
+| Класс                                              | Precision | Recall | F1-Score | Support |
+|----------------------------------------------------|-----------|--------|----------|---------|
+| Apple___Apple_scab                                 | 0.945     | 0.897  | 0.920    | 58      |
+| Apple___Black_rot                                  | 1.000     | 0.954  | 0.976    | 65      |
+| Apple___Cedar_apple_rust                           | 1.000     | 0.920  | 0.958    | 25      |
+| Apple___healthy                                    | 0.952     | 0.994  | 0.972    | 159     |
+| Blueberry___healthy                                | 1.000     | 1.000  | 1.000    | 133     |
+| Cherry___healthy                                   | 1.000     | 0.989  | 0.994    | 90      |
+| Cherry___Powdery_mildew                            | 0.990     | 0.990  | 0.990    | 100     |
+| Corn___Cercospora_leaf_spot Gray_leaf_spot         | 0.906     | 0.857  | 0.881    | 56      |
+| Corn___Common_rust                                 | 1.000     | 0.984  | 0.992    | 127     |
+| Corn___healthy                                     | 1.000     | 0.991  | 0.996    | 112     |
+| Corn___Northern_Leaf_Blight                        | 0.915     | 0.964  | 0.939    | 112     |
+| Grape___Black_rot                                  | 0.933     | 0.991  | 0.961    | 112     |
+| Grape___Esca_(Black_Measles)                       | 0.992     | 0.944  | 0.967    | 126     |
+| Grape___healthy                                    | 1.000     | 1.000  | 1.000    | 36      |
+| Grape___Leaf_blight_(Isariopsis_Leaf_Spot)         | 0.990     | 0.971  | 0.981    | 105     |
+| Orange___Haunglongbing_(Citrus_greening)           | 0.995     | 1.000  | 0.997    | 561     |
+| Peach___Bacterial_spot                             | 0.992     | 1.000  | 0.996    | 237     |
+| Peach___healthy                                    | 1.000     | 1.000  | 1.000    | 27      |
+| Pepper,_bell___Bacterial_spot                      | 0.971     | 0.971  | 0.971    | 105     |
+| Pepper,_bell___healthy                             | 0.980     | 0.935  | 0.957    | 154     |
+| Potato___Early_blight                              | 0.933     | 1.000  | 0.966    | 98      |
+| Potato___healthy                                   | 0.889     | 0.800  | 0.842    | 10      |
+| Potato___Late_blight                               | 0.953     | 0.971  | 0.962    | 104     |
+| Raspberry___healthy                                | 1.000     | 1.000  | 1.000    | 30      |
+| Soybean___healthy                                  | 0.983     | 0.994  | 0.989    | 527     |
+| Squash___Powdery_mildew                            | 1.000     | 1.000  | 1.000    | 188     |
+| Strawberry___healthy                               | 1.000     | 1.000  | 1.000    | 50      |
+| Strawberry___Leaf_scorch                           | 0.978     | 0.989  | 0.983    | 88      |
+| Tomato___Bacterial_spot                            | 0.895     | 0.973  | 0.932    | 184     |
+| Tomato___Early_blight                              | 0.979     | 0.490  | 0.653    | 96      |
+| Tomato___healthy                                   | 0.976     | 0.982  | 0.979    | 164     |
+| Tomato___Late_blight                               | 0.909     | 0.937  | 0.923    | 191     |
+| Tomato___Leaf_Mold                                 | 0.985     | 0.680  | 0.805    | 97      |
+| Tomato___Septoria_leaf_spot                        | 0.902     | 0.867  | 0.885    | 181     |
+| Tomato___Spider_mites Two-spotted_spider_mite      | 0.837     | 0.976  | 0.901    | 168     |
+| Tomato___Target_Spot                               | 0.784     | 0.926  | 0.849    | 149     |
+| Tomato___Tomato_mosaic_virus                       | 0.943     | 0.917  | 0.930    | 36      |
+| Tomato___Tomato_Yellow_Leaf_Curl_Virus             | 0.989     | 0.986  | 0.988    | 569     |
+| **accuracy**                                       |           |        | **0.961** | **5430** |
+| **macro avg**                                      | 0.960     | 0.943  | 0.948    | 5430    |
+| **weighted avg**                                   | 0.963     | 0.961  | 0.960    | 5430    |
 
 ## Инструкция по запуску кода
 Открыть https://colab.research.google.com/drive/18g7iq-HX67wennRx4qCXWGOni4SP96Uj?usp=sharing.
